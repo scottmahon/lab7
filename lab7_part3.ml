@@ -115,8 +115,8 @@ with the elements inverted, *without using any of the `IntListStack`
 methods*.
 ......................................................................*)
 
-let invert_stack (s : IntListStack.stack) : IntListStack.stack =
-  List.rev ;;
+let invert_stack : IntListStack.stack -> IntListStack.stack = 
+ List.rev ;;
 
 (* Now what would be the result of the top operation on a stack
 inverted with `invert_stack`? Let's try it.
