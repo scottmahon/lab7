@@ -63,19 +63,26 @@ top of an empty stack.
 ......................................................................*)
 
 module Stack : STACK =  
-struct   
- exception EmptyStack   
-  type 'a stack = 'a list 
-let empty : 'a stack = []    
-let push (i : 'a) (s : 'a stack) : 'a stack = i :: s  
-let pop_helper (s : 'a stack) : 'a * 'a stack =      
-  match s with      
-  | [] -> raise EmptyStack      
-  | h :: t -> (h, t)  
-  let top (s: 'a stack) : 'a =      
-  fst (pop_helper s)  
-  let pop (s : 'a stack) : 'a stack =      
-  snd (pop_helper s) 
+  struct   
+    exception EmptyStack   
+    
+    type 'a stack = 'a list 
+
+    let empty : 'a stack = []    
+
+    let push (i : 'a) (s : 'a stack) : 'a stack = i :: s  
+
+    let pop_helper (s : 'a stack) : 'a * 'a stack =      
+     match s with      
+     | [] -> raise EmptyStack      
+     | h :: t -> (h, t)  
+
+    let top (s: 'a stack) : 'a =      
+      fst (pop_helper s)  
+  
+    let pop (s : 'a stack) : 'a stack =      
+      snd (pop_helper s) 
+   
    end ;;
 
 (*......................................................................
@@ -84,12 +91,12 @@ argument and uses your Stack module to return a new stack with the
 following strings pushed in order: `"Computer"`, `"Science"`, `"51"`.
 ......................................................................*)
 
-let sample_stack = 
- let open Stack in 
- empty  
- |> push "Computer"  
- |> push "Science"  
- |> push "51" ;;
+let sample_stack () =  
+  let open Stack in  
+  empty  
+  |> push "Computer"  
+  |> push "Science"  
+  |> push "51" ;;
 
 (*......................................................................
 Exercise 4C: Write an expression to generate a stack with the
