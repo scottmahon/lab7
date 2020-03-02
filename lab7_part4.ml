@@ -62,28 +62,7 @@ in the module; raise it if an attempt is made to examine or pop the
 top of an empty stack.
 ......................................................................*)
 
-module Stack : STACK =  
-  struct   
-    exception EmptyStack   
-    
-    type 'a stack = 'a list 
-
-    let empty : 'a stack = []    
-
-    let push (i : 'a) (s : 'a stack) : 'a stack = i :: s  
-
-    let pop_helper (s : 'a stack) : 'a * 'a stack =      
-     match s with      
-     | [] -> raise EmptyStack      
-     | h :: t -> (h, t)  
-
-    let top (s: 'a stack) : 'a =      
-      fst (pop_helper s)  
-  
-    let pop (s : 'a stack) : 'a stack =      
-      snd (pop_helper s) 
-   
-   end ;;
+module Stack : STACK =  struct    exception EmptyStack    type 'a stack = 'a list (* We've chosen to implement stacks                               internally as lists, a natural                               and simple choice *)    (* empty -- An empty stack *)    let empty : 'a stack = []    (* push i s -- Adds an element i to the top of stack s *)    let push (i : 'a) (s : 'a stack) : 'a stack = i :: s    (* pop_helper s -- Returns a pair of the top element of the       stack and a stack containing the remaining elements *)    let pop_helper (s : 'a stack) : 'a * 'a stack =      match s with      | [] -> raise EmptyStack      | h :: t -> (h, t)    (* top s -- Returns the value of the topmost element on stack s,       raising the EmptyStack exception if there is no element to be       returned. *)    let top (s: 'a stack) : 'a =      fst (pop_helper s)    (* pop s -- Returns a stack with the topmost element from s       removed, raising the EmptyStack exception if there is no       element to be removed. *)    let pop (s : 'a stack) : 'a stack =      snd (pop_helper s)  end ;;
 
 (*......................................................................
 Exercise 4B: Write a function `sample_stack` that takes a unit
@@ -91,12 +70,7 @@ argument and uses your Stack module to return a new stack with the
 following strings pushed in order: `"Computer"`, `"Science"`, `"51"`.
 ......................................................................*)
 
-let sample_stack () =  
-  let open Stack in  
-  empty  
-  |> push "Computer"  
-  |> push "Science"  
-  |> push "51" ;;
+let sample_stack () =  let open Stack in  empty  |> push "Computer"  |> push "Science"  |> push "51" ;;
 
 (*......................................................................
 Exercise 4C: Write an expression to generate a stack with the
