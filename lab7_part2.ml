@@ -83,9 +83,9 @@ expression that extracts the red channel of the color named Red,
 thereby naming the result `red_channel`.
 ......................................................................*)
 
+
 let red_channel : int = 
-Color.red(color.colored_named Red)
-;;
+ Color.red (Color.color_named Color.Red) ;;
  
 
 (* Let's investigate one way that a signature can be useful. Although
