@@ -1,8 +1,4 @@
-let red_channel : int = 
-Color.red(color.colored_named Red)
-;;
- 
- type color ;;
+type color ;;
 
  type color_name = 
  	| Red  
