@@ -62,33 +62,21 @@ in the module; raise it if an attempt is made to examine or pop the
 top of an empty stack.
 ......................................................................*)
 
-module Stack : STACK =
-  struct
-    exception EmptyStack
-
-    type 'a stack = 'a      (* replace this with the correct
-                               implementation type *)
-    let empty : 'a stack = []
-
-    let push (i : 'a) (s : 'a stack) : 'a stack = i :: s
-
-    let pop_helper (s : 'a stack) : 'a * 'a stack =
-      match s with      
-      | [] -> raise EmptyStack      
-      | h :: t -> (h, t)
-
-    (* top s -- Returns the value of the topmost element on stack s,
-       raising the EmptyStack exception if there is no element to be
-       returned. *)
-    let top (s: 'a stack) : 'a =
-      fst (pop_helper s)
-
-    (* pop s -- Returns a stack with the topmost element from s
-       removed, raising the EmptyStack exception if there is no
-       element to be removed. *)
-    let pop (s : 'a stack) : 'a stack =
-      snd (pop_helper s)
-  end ;;
+module Stack : STACK =  
+struct   
+ exception EmptyStack   
+  type 'a stack = 'a list 
+let empty : 'a stack = []    
+let push (i : 'a) (s : 'a stack) : 'a stack = i :: s  
+let pop_helper (s : 'a stack) : 'a * 'a stack =      
+  match s with      
+  | [] -> raise EmptyStack      
+  | h :: t -> (h, t)  
+  let top (s: 'a stack) : 'a =      
+  fst (pop_helper s)  
+  let pop (s : 'a stack) : 'a stack =      
+  snd (pop_helper s) 
+   end ;;
 
 (*......................................................................
 Exercise 4B: Write a function `sample_stack` that takes a unit
