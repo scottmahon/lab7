@@ -84,8 +84,9 @@ thereby naming the result `red_channel`.
 ......................................................................*)
 
 
-let red_channel : int = 
- Color.red (Color.color_named Color.Red) ;;
+let red_channel : int =  
+  let open Color in 
+   red (color_named Red) ;;
  
 
 (* Let's investigate one way that a signature can be useful. Although
